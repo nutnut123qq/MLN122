@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body className={`${inter.className} antialiased bg-gradient-to-br from-orange-50 via-white to-amber-50 min-h-screen`}>
+    <html lang="vi" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${inter.className} antialiased bg-gradient-to-br from-orange-50 via-white to-amber-50 min-h-screen`}>
         <Header />
         <main className="pt-20">
           {children}

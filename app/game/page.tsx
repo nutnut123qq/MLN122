@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gamepad2, ArrowLeft, CheckCircle, XCircle, Trophy, RotateCcw, Star } from 'lucide-react';
 import Link from 'next/link';
@@ -136,53 +136,146 @@ const questions: Question[] = [
   },
 ];
 
+function shuffleArray<T>(array: T[]): T[] {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function shuffleQuestions(baseQuestions: Question[]): Question[] {
+  return shuffleArray(baseQuestions).map((q) => {
+    const optionIndices = q.options.map((_, idx) => idx);
+    const shuffledIndices = shuffleArray(optionIndices);
+    const shuffledOptions = shuffledIndices.map((idx) => q.options[idx]);
+    const newCorrectIndex = shuffledIndices.indexOf(q.correctAnswer);
+    return {
+      ...q,
+      options: shuffledOptions,
+      correctAnswer: newCorrectIndex,
+    };
+  });
+}
+
 export default function Game() {
+  // Initialize deterministically to avoid hydration mismatch; shuffle after mount
+  const [quizQuestions, setQuizQuestions] = useState<Question[]>(questions);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+  const [timeScore, setTimeScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
-  const [answeredQuestions, setAnsweredQuestions] = useState<boolean[]>(new Array(questions.length).fill(false));
+  const [answeredQuestions, setAnsweredQuestions] = useState<boolean[]>(new Array(quizQuestions.length).fill(false));
+  const QUESTION_TIME_LIMIT = 20;
+  const [timeRemaining, setTimeRemaining] = useState(QUESTION_TIME_LIMIT);
+
+  // Shuffle once on the client after mount to avoid SSR/client mismatch
+  useEffect(() => {
+    setQuizQuestions(shuffleQuestions(questions));
+  }, []);
+
+  useEffect(() => {
+    if (quizCompleted) return;
+    if (selectedAnswer !== null) return;
+
+    const timerId = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerId);
+          setShowResult(true);
+          setAnsweredQuestions((prevArr) => {
+            const updated = [...prevArr];
+            updated[currentQuestion] = true;
+            return updated;
+          });
+          // Auto-advance after a short delay to show the explanation
+          setTimeout(() => {
+            if (currentQuestion < quizQuestions.length - 1) {
+              setCurrentQuestion(currentQuestion + 1);
+              setSelectedAnswer(null);
+              setShowResult(false);
+              setTimeRemaining(QUESTION_TIME_LIMIT);
+            } else {
+              setQuizCompleted(true);
+            }
+          }, 1200);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [currentQuestion, selectedAnswer, quizCompleted, quizQuestions.length]);
 
   const handleAnswerClick = (answerIndex: number) => {
     if (selectedAnswer === null) {
       setSelectedAnswer(answerIndex);
       setShowResult(true);
+      setTimeRemaining((prev) => prev); // freeze display
       
-      const newAnswered = [...answeredQuestions];
-      newAnswered[currentQuestion] = true;
-      setAnsweredQuestions(newAnswered);
+      setAnsweredQuestions((prevArr) => {
+        const updated = [...prevArr];
+        updated[currentQuestion] = true;
+        return updated;
+      });
 
-      if (answerIndex === questions[currentQuestion].correctAnswer) {
+      if (answerIndex === quizQuestions[currentQuestion].correctAnswer) {
         setScore(score + 1);
+        setTimeScore((prev) => prev + timeRemaining);
       }
     }
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setShowResult(false);
+      setTimeRemaining(QUESTION_TIME_LIMIT);
     } else {
       setQuizCompleted(true);
     }
   };
 
   const handleRestart = () => {
+    const reshuffled = shuffleQuestions(questions);
+    setQuizQuestions(reshuffled);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setShowResult(false);
     setScore(0);
     setQuizCompleted(false);
-    setAnsweredQuestions(new Array(questions.length).fill(false));
+    setAnsweredQuestions(new Array(reshuffled.length).fill(false));
+    setTimeRemaining(QUESTION_TIME_LIMIT);
+    setTimeScore(0);
   };
 
-  const currentQ = questions[currentQuestion];
-  const percentage = Math.round((score / questions.length) * 100);
+  const currentQ = quizQuestions[currentQuestion];
+  const percentage = Math.round((score / quizQuestions.length) * 100);
+
+  useEffect(() => {
+    if (!quizCompleted) return;
+    try {
+      const newResult = {
+        timestamp: Date.now(),
+        correctCount: score,
+        totalQuestions: quizQuestions.length,
+        percentage,
+        timeScore,
+      };
+      const existingRaw = localStorage.getItem('quizResults');
+      const existing: typeof newResult[] = existingRaw ? JSON.parse(existingRaw) : [];
+      existing.push(newResult);
+      localStorage.setItem('quizResults', JSON.stringify(existing));
+    } catch {}
+  }, [quizCompleted, score, quizQuestions.length, percentage, timeScore]);
 
   return (
-    <div className="min-h-screen py-12 px-4">
+    <div suppressHydrationWarning className="min-h-screen py-12 px-4">
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
         <motion.div
@@ -225,19 +318,21 @@ export default function Game() {
             >
               <div className="flex justify-between items-center mb-3">
                 <span className="text-sm font-semibold text-gray-600">
-                  Câu hỏi {currentQuestion + 1}/{questions.length}
+                  Câu hỏi {currentQuestion + 1}/{quizQuestions.length}
                 </span>
-                <span className="text-sm font-semibold text-blue-600">
-                  Điểm: {score}
-                </span>
+                <span className="text-sm font-semibold text-blue-600">Điểm: {score}</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                  animate={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}
                   className="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"
                   transition={{ duration: 0.5 }}
                 />
+              </div>
+              <div className="mt-3 flex items-center justify-between text-sm text-gray-600">
+                <span>Thời gian còn lại</span>
+                <span className={`font-semibold ${timeRemaining <= 5 ? 'text-red-600' : 'text-gray-800'}`}>{timeRemaining}s</span>
               </div>
             </motion.div>
 
@@ -345,10 +440,10 @@ export default function Game() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={handleNext}
+                  onClick={handleNextQuestion}
                   className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                 >
-                  {currentQuestion < questions.length - 1 ? 'Câu tiếp theo' : 'Xem kết quả'}
+                  {currentQuestion < quizQuestions.length - 1 ? 'Câu tiếp theo' : 'Xem kết quả'}
                   <ArrowLeft className="rotate-180" size={20} />
                 </motion.button>
               </motion.div>
@@ -375,14 +470,11 @@ export default function Game() {
             </h2>
 
             <div className="mb-8">
-              <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
-                            <div className="text-center mb-8">
               <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-700 mb-2">
-                {score}/{questions.length}
+                {score}/{quizQuestions.length}
               </div>
-              <p className="text-xl text-gray-600">
-                Bạn đã trả lời đúng {percentage}% câu hỏi
-              </p>
+              <p className="text-xl text-gray-600">Bạn đã trả lời đúng {percentage}% câu hỏi</p>
+              <p className="mt-2 text-sm text-gray-500">Điểm thời gian: <span className="font-semibold text-gray-700">{timeScore}</span></p>
             </div>
 
             {/* Rating */}
@@ -391,7 +483,7 @@ export default function Game() {
                 <Star
                   key={star}
                   className={`w-8 h-8 ${
-                    star <= Math.ceil((score / questions.length) * 5)
+                    star <= Math.ceil((score / quizQuestions.length) * 5)
                       ? 'fill-yellow-400 text-yellow-400'
                       : 'text-gray-300'
                   }`}
@@ -413,7 +505,7 @@ export default function Game() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={resetQuiz}
+                onClick={handleRestart}
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
               >
                 <RotateCcw size={20} />
