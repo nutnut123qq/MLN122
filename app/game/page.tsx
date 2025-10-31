@@ -193,7 +193,7 @@ export default function Game() {
           <Link href="/">
             <motion.button
               whileHover={{ x: -5 }}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 mb-6 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Quay lại trang chủ</span>
@@ -201,7 +201,7 @@ export default function Game() {
           </Link>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
               <Gamepad2 className="w-8 h-8" />
             </div>
             <div>
@@ -235,7 +235,7 @@ export default function Game() {
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"
                   transition={{ duration: 0.5 }}
                 />
               </div>
@@ -274,7 +274,7 @@ export default function Game() {
                             : showIncorrect
                             ? 'bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-lg'
                             : selectedAnswer === null
-                            ? 'bg-gradient-to-r from-gray-50 to-blue-50 hover:shadow-md border-2 border-transparent hover:border-blue-300'
+                            ? 'bg-gradient-to-r from-gray-50 to-orange-50 hover:shadow-md border-2 border-transparent hover:border-orange-300'
                             : 'bg-gray-100 text-gray-400'
                         }`}
                       >
@@ -345,8 +345,8 @@ export default function Game() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={handleNextQuestion}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                  onClick={handleNext}
+                  className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   {currentQuestion < questions.length - 1 ? 'Câu tiếp theo' : 'Xem kết quả'}
                   <ArrowLeft className="rotate-180" size={20} />
@@ -376,6 +376,8 @@ export default function Game() {
 
             <div className="mb-8">
               <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
+                            <div className="text-center mb-8">
+              <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-700 mb-2">
                 {score}/{questions.length}
               </div>
               <p className="text-xl text-gray-600">
@@ -411,8 +413,8 @@ export default function Game() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={handleRestart}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                onClick={resetQuiz}
+                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
               >
                 <RotateCcw size={20} />
                 Chơi lại

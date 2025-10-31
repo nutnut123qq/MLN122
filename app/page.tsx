@@ -12,7 +12,7 @@ export default function Home() {
       title: 'Khái niệm KTTT định hướng XHCN',
       description: 'Nền kinh tế vận hành theo quy luật thị trường, hướng tới dân giàu, nước mạnh, dân chủ, công bằng, văn minh',
       icon: <BookOpen className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-orange-500 to-orange-600',
       link: '/khai-niem',
     },
     {
@@ -20,7 +20,7 @@ export default function Home() {
       title: 'Tính tất yếu khách quan',
       description: 'Phù hợp xu hướng phát triển, ưu việt trong thúc đẩy phát triển, đáp ứng nguyện vọng nhân dân',
       icon: <Target className="w-6 h-6" />,
-      color: 'from-indigo-500 to-purple-500',
+      color: 'from-amber-600 to-orange-700',
       link: '/tinh-tat-yeu',
     },
     {
@@ -28,7 +28,7 @@ export default function Home() {
       title: 'Đặc trưng cơ bản',
       description: 'Về mục tiêu, sở hữu, quản lý, phân phối và gắn kết tăng trưởng với công bằng xã hội',
       icon: <TrendingUp className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-orange-600 to-red-600',
       link: '/dac-trung',
     },
     {
@@ -36,7 +36,7 @@ export default function Home() {
       title: 'Hoàn thiện thể chế',
       description: 'Về sở hữu, thị trường, công bằng xã hội, hội nhập quốc tế và nâng cao năng lực hệ thống chính trị',
       icon: <Scale className="w-6 h-6" />,
-      color: 'from-pink-500 to-rose-500',
+      color: 'from-red-600 to-orange-700',
       link: '/hoan-thien-the-che',
     },
     {
@@ -44,7 +44,7 @@ export default function Home() {
       title: 'Quan hệ lợi ích',
       description: 'Bảo đảm hài hòa các quan hệ lợi ích trong phát triển kinh tế - xã hội',
       icon: <Users className="w-6 h-6" />,
-      color: 'from-orange-500 to-amber-500',
+      color: 'from-amber-500 to-orange-600',
       link: '/quan-he-loi-ich',
     },
   ];
@@ -68,7 +68,7 @@ export default function Home() {
                 transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
                 className="inline-block mb-6"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl flex items-center justify-center shadow-2xl">
                   <Globe className="w-10 h-10 text-white" />
                 </div>
               </motion.div>
@@ -85,7 +85,7 @@ export default function Home() {
               
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto lg:mx-0 mb-8">
                 Tìm hiểu về mô hình kinh tế đặc thù của Việt Nam - 
-                hướng tới <span className="font-semibold text-blue-600">dân giàu, nước mạnh, dân chủ, công bằng, văn minh</span>
+                hướng tới <span className="font-semibold text-orange-600">dân giàu, nước mạnh, dân chủ, công bằng, văn minh</span>
               </p>
 
               <motion.div
@@ -98,7 +98,7 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                    className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                   >
                     Bắt đầu học
                     <ArrowRight size={20} />
@@ -144,7 +144,7 @@ export default function Home() {
             {/* Desktop Timeline */}
             <div className="hidden lg:block relative">
               {/* Timeline Line */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-orange-500 transform -translate-x-1/2 rounded-full" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-orange-500 to-orange-600 transform -translate-x-1/2 rounded-full" />
 
               {roadmapItems.map((item, index) => (
                 <motion.div
@@ -177,7 +177,7 @@ export default function Home() {
                         <p className="text-gray-600 leading-relaxed">
                           {item.description}
                         </p>
-                        <div className={`mt-4 flex items-center gap-2 text-blue-600 font-semibold ${
+                        <div className={`mt-4 flex items-center gap-2 text-orange-600 font-semibold ${
                           index % 2 === 0 ? 'justify-end' : 'justify-start'
                         }`}>
                           Tìm hiểu thêm
@@ -229,7 +229,7 @@ export default function Home() {
                           <p className="text-gray-600 text-sm leading-relaxed mb-3">
                             {item.description}
                           </p>
-                          <div className="flex items-center gap-2 text-blue-600 font-semibold text-sm">
+                          <div className="flex items-center gap-2 text-orange-600 font-semibold text-sm">
                             Tìm hiểu thêm
                             <ArrowRight size={14} />
                           </div>
@@ -244,9 +244,9 @@ export default function Home() {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" />
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute top-40 right-10 w-72 h-72 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
       </section>
 
       {/* Features Section */}
@@ -267,21 +267,21 @@ export default function Home() {
                 title: 'Nội dung chi tiết',
                 description: 'Hệ thống kiến thức được tổ chức khoa học, dễ hiểu',
                 icon: <BookOpen className="w-8 h-8" />,
-                color: 'from-blue-500 to-cyan-500',
+                color: 'from-orange-500 to-orange-600',
                 illustration: <BookIllustration />,
               },
               {
                 title: 'Trò chơi tương tác',
                 description: 'Học qua quiz và mini games thú vị, củng cố kiến thức',
                 icon: <Target className="w-8 h-8" />,
-                color: 'from-purple-500 to-pink-500',
+                color: 'from-amber-600 to-orange-700',
                 illustration: <TeamworkIllustration />,
               },
               {
                 title: 'Giao diện hiện đại',
                 description: 'Thiết kế đẹp mắt, animation mượt mà, trải nghiệm tuyệt vời',
                 icon: <TrendingUp className="w-8 h-8" />,
-                color: 'from-orange-500 to-rose-500',
+                color: 'from-orange-600 to-red-600',
                 illustration: <EconomyIllustration />,
               },
             ].map((feature, index) => (
@@ -295,7 +295,7 @@ export default function Home() {
                 className="glass-effect rounded-2xl overflow-hidden card-hover"
               >
                 {/* Illustration */}
-                <div className="h-48 bg-gradient-to-br from-blue-50 to-purple-50 p-6 flex items-center justify-center">
+                <div className="h-48 bg-gradient-to-br from-orange-50 to-amber-50 p-6 flex items-center justify-center">
                   <div className="w-full h-full">
                     {feature.illustration}
                   </div>

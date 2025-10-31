@@ -10,7 +10,7 @@ export default function HoanThienTheChe() {
     {
       title: 'Hoàn thiện thể chế về sở hữu',
       icon: <FileText className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-orange-500 to-orange-600',
       items: [
         'Thể chế hóa đầy đủ quyền tài sản của nhà nước, tổ chức và cá nhân',
         'Hoàn thiện pháp luật về đất đai, sử dụng hiệu quả đất đai',
@@ -23,7 +23,7 @@ export default function HoanThienTheChe() {
     {
       title: 'Phát triển các thành phần kinh tế',
       icon: <Building className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-amber-600 to-orange-700',
       items: [
         'Mặt bằng pháp lý thống nhất cho các loại hình doanh nghiệp',
         'Bảo đảm quyền tự do kinh doanh theo Hiến pháp',
@@ -37,7 +37,7 @@ export default function HoanThienTheChe() {
     {
       title: 'Phát triển đồng bộ các loại thị trường',
       icon: <Globe2 className="w-6 h-6" />,
-      color: 'from-indigo-500 to-blue-500',
+      color: 'from-orange-600 to-red-600',
       items: [
         'Hoàn thiện thể chế để phát triển đồng bộ các yếu tố thị trường',
         'Vận hành theo nguyên tắc thể chế kinh tế thị trường',
@@ -49,7 +49,7 @@ export default function HoanThienTheChe() {
     {
       title: 'Công bằng xã hội và hội nhập',
       icon: <Users className="w-6 h-6" />,
-      color: 'from-orange-500 to-rose-500',
+      color: 'from-red-600 to-orange-700',
       items: [
         'Kết hợp phát triển kinh tế với phát triển xã hội bền vững',
         'Tạo cơ hội cho mọi thành viên tham gia và hưởng thụ công bằng',
@@ -82,7 +82,7 @@ export default function HoanThienTheChe() {
           <Link href="/">
             <motion.button
               whileHover={{ x: -5 }}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 mb-6 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Quay lại trang chủ</span>
@@ -90,7 +90,7 @@ export default function HoanThienTheChe() {
           </Link>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-700 rounded-2xl flex items-center justify-center text-white shadow-lg">
               <Scale className="w-8 h-8" />
             </div>
             <div>
@@ -115,13 +115,13 @@ export default function HoanThienTheChe() {
             <div>
               <h2 className="text-2xl font-bold mb-4 text-gray-800">Thể chế kinh tế là gì?</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                <span className="font-semibold text-pink-600">Thể chế kinh tế thị trường định hướng xã hội chủ nghĩa</span> là hệ thống đường lối, chủ trương chiến lược, hệ thống luật pháp, chính sách quy định xác lập cơ chế vận hành, điều chỉnh chức năng, hoạt động, mục tiêu, phương thức hoạt động, các quan hệ lợi ích của các tổ chức, các chủ thể kinh tế.
+                <span className="font-semibold text-orange-600">Thể chế kinh tế thị trường định hướng xã hội chủ nghĩa</span> là hệ thống đường lối, chủ trương chiến lược, hệ thống luật pháp, chính sách quy định xác lập cơ chế vận hành, điều chỉnh chức năng, hoạt động, mục tiêu, phương thức hoạt động, các quan hệ lợi ích của các tổ chức, các chủ thể kinh tế.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Nhằm hướng tới xác lập đồng bộ các yếu tố thị trường, các loại thị trường hiện đại theo hướng góp phần thúc đẩy <span className="font-semibold">dân giàu, nước mạnh, dân chủ, công bằng, văn minh</span>.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-6 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 flex items-center justify-center">
               <BalanceIllustration />
             </div>
           </div>
@@ -230,7 +230,7 @@ export default function HoanThienTheChe() {
             <motion.button
               whileHover={{ scale: 1.05, x: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-orange-600 transition-colors"
             >
               <ArrowLeft size={20} />
               Đặc trưng
@@ -241,7 +241,7 @@ export default function HoanThienTheChe() {
             <motion.button
               whileHover={{ scale: 1.05, x: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               Tiếp theo: Quan hệ lợi ích
               <ArrowRight size={20} />

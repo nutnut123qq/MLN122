@@ -18,7 +18,7 @@ export default function QuanHeLoiIch() {
           <Link href="/">
             <motion.button
               whileHover={{ x: -5 }}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 mb-6 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Quay lại trang chủ</span>
@@ -75,25 +75,25 @@ export default function QuanHeLoiIch() {
                 {
                   title: 'Lợi ích cá nhân',
                   icon: <Heart className="w-6 h-6" />,
-                  color: 'from-pink-500 to-rose-500',
+                  color: 'from-orange-500 to-orange-600',
                   desc: 'Lợi ích của từng cá nhân trong xã hội',
                 },
                 {
                   title: 'Lợi ích tập thể',
                   icon: <Users className="w-6 h-6" />,
-                  color: 'from-blue-500 to-cyan-500',
+                  color: 'from-amber-600 to-orange-700',
                   desc: 'Lợi ích của nhóm, đơn vị, tổ chức',
                 },
                 {
                   title: 'Lợi ích quốc gia',
                   icon: <Target className="w-6 h-6" />,
-                  color: 'from-indigo-500 to-purple-500',
+                  color: 'from-orange-600 to-red-600',
                   desc: 'Lợi ích chung của toàn dân tộc',
                 },
                 {
                   title: 'Lợi ích nhân loại',
                   icon: <TrendingUp className="w-6 h-6" />,
-                  color: 'from-green-500 to-emerald-500',
+                  color: 'from-red-600 to-orange-700',
                   desc: 'Lợi ích của cộng đồng quốc tế',
                 },
               ].map((type, index) => (
@@ -104,7 +104,7 @@ export default function QuanHeLoiIch() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
-                  className="p-6 bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl hover:shadow-lg transition-all"
+                  className="p-6 bg-gradient-to-br from-gray-50 to-orange-50 rounded-xl hover:shadow-lg transition-all"
                 >
                   <div className={`w-12 h-12 bg-gradient-to-br ${type.color} rounded-xl flex items-center justify-center text-white mb-4`}>
                     {type.icon}
@@ -241,7 +241,7 @@ export default function QuanHeLoiIch() {
             <motion.button
               whileHover={{ scale: 1.05, x: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-orange-600 transition-colors"
             >
               <ArrowLeft size={20} />
               Hoàn thiện thể chế
@@ -252,7 +252,7 @@ export default function QuanHeLoiIch() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               Thử thách với trò chơi! 🎮
             </motion.button>

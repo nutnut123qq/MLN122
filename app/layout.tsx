@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${inter.className} antialiased bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen`}>
+      <body className={`${inter.className} antialiased bg-gradient-to-br from-orange-50 via-white to-amber-50 min-h-screen`}>
         <Header />
         <main className="pt-20">
           {children}

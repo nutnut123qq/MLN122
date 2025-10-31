@@ -10,7 +10,7 @@ export default function TinhTatYeu() {
     {
       title: 'Phù hợp xu hướng phát triển',
       icon: <TrendingUp className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-orange-500 to-orange-600',
       points: [
         'Kinh tế hàng hóa phát triển đến trình độ cao tạo ra kinh tế thị trường',
         'Ở Việt Nam, các điều kiện cho kinh tế thị trường đang tồn tại khách quan',
@@ -22,7 +22,7 @@ export default function TinhTatYeu() {
     {
       title: 'Ưu việt trong thúc đẩy phát triển',
       icon: <TrendingUp className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-amber-600 to-orange-700',
       points: [
         'Kinh tế thị trường là phương thức phân bổ nguồn lực hiệu quả nhất',
         'Thúc đẩy lực lượng sản xuất phát triển nhanh và có hiệu quả',
@@ -34,7 +34,7 @@ export default function TinhTatYeu() {
     {
       title: 'Đáp ứng nguyện vọng nhân dân',
       icon: <Heart className="w-6 h-6" />,
-      color: 'from-orange-500 to-rose-500',
+      color: 'from-orange-600 to-red-600',
       points: [
         'Khát vọng dân giàu, nước mạnh, dân chủ, công bằng, văn minh',
         'Hiện thực hóa khát vọng thông qua kinh tế thị trường ĐHXHCN',
@@ -57,7 +57,7 @@ export default function TinhTatYeu() {
           <Link href="/">
             <motion.button
               whileHover={{ x: -5 }}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 mb-6 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Quay lại trang chủ</span>
@@ -65,7 +65,7 @@ export default function TinhTatYeu() {
           </Link>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-amber-600 to-orange-700 rounded-2xl flex items-center justify-center text-white shadow-lg">
               <Target className="w-8 h-8" />
             </div>
             <div>
@@ -89,10 +89,10 @@ export default function TinhTatYeu() {
           <div className="grid md:grid-cols-2 gap-8 p-8 items-center">
             <div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Phát triển kinh tế thị trường định hướng xã hội chủ nghĩa là <span className="font-semibold text-blue-600">tất yếu ở Việt Nam</span> xuất phát từ những lý do cơ bản sau:
+                Phát triển kinh tế thị trường định hướng xã hội chủ nghĩa là <span className="font-semibold text-orange-600">tất yếu ở Việt Nam</span> xuất phát từ những lý do cơ bản sau:
               </p>
             </div>
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6">
               <EconomyIllustration />
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function TinhTatYeu() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: pointIndex * 0.05 }}
-                      className="flex items-start gap-3 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl hover:shadow-md transition-shadow"
+                      className="flex items-start gap-3 p-4 bg-gradient-to-r from-gray-50 to-orange-50 rounded-xl hover:shadow-md transition-shadow"
                     >
                       <div className={`w-8 h-8 bg-gradient-to-br ${reason.color} rounded-lg flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
                         {pointIndex + 1}
@@ -194,7 +194,7 @@ export default function TinhTatYeu() {
             <motion.button
               whileHover={{ scale: 1.05, x: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-orange-600 transition-colors"
             >
               <ArrowLeft size={20} />
               Khái niệm
@@ -205,7 +205,7 @@ export default function TinhTatYeu() {
             <motion.button
               whileHover={{ scale: 1.05, x: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               Tiếp theo: Đặc trưng
               <ArrowRight size={20} />

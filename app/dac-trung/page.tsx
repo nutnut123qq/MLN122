@@ -10,7 +10,7 @@ export default function DacTrung() {
     {
       title: 'Về mục tiêu',
       icon: <Target className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-orange-500 to-orange-600',
       content: [
         'Phát triển lực lượng sản xuất, xây dựng cơ sở vật chất - kỹ thuật của CNXH',
         'Nâng cao đời sống nhân dân',
@@ -21,7 +21,7 @@ export default function DacTrung() {
     {
       title: 'Về quan hệ sở hữu và thành phần kinh tế',
       icon: <Building2 className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-amber-600 to-orange-700',
       content: [
         'Nhiều hình thức sở hữu, nhiều thành phần kinh tế',
         'Kinh tế nhà nước giữ vai trò chủ đạo',
@@ -33,7 +33,7 @@ export default function DacTrung() {
     {
       title: 'Về quan hệ quản lý nền kinh tế',
       icon: <Scale className="w-6 h-6" />,
-      color: 'from-indigo-500 to-blue-500',
+      color: 'from-orange-600 to-red-600',
       content: [
         'Nhà nước pháp quyền XHCN của nhân dân, do nhân dân, vì nhân dân',
         'Dưới sự lãnh đạo của Đảng Cộng sản Việt Nam',
@@ -45,7 +45,7 @@ export default function DacTrung() {
     {
       title: 'Về quan hệ phân phối',
       icon: <DollarSign className="w-6 h-6" />,
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-red-600 to-orange-700',
       content: [
         'Phân phối công bằng các yếu tố sản xuất (đầu vào)',
         'Phân phối chủ yếu theo kết quả lao động, hiệu quả kinh tế',
@@ -57,7 +57,7 @@ export default function DacTrung() {
     {
       title: 'Về gắn tăng trưởng với công bằng xã hội',
       icon: <Heart className="w-6 h-6" />,
-      color: 'from-orange-500 to-rose-500',
+      color: 'from-amber-500 to-orange-600',
       content: [
         'Gắn tăng trưởng kinh tế với công bằng xã hội',
         'Phát triển kinh tế đi đôi với phát triển văn hóa - xã hội',
@@ -80,7 +80,7 @@ export default function DacTrung() {
           <Link href="/">
             <motion.button
               whileHover={{ x: -5 }}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 mb-6 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-orange-600 mb-6 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Quay lại trang chủ</span>
@@ -88,7 +88,7 @@ export default function DacTrung() {
           </Link>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
               <TrendingUp className="w-8 h-8" />
             </div>
             <div>
@@ -112,10 +112,10 @@ export default function DacTrung() {
           <div className="grid md:grid-cols-2 gap-8 p-8 items-center">
             <div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Nền kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam có những <span className="font-semibold text-purple-600">đặc trưng riêng</span> phản ánh điều kiện lịch sử, trình độ phát triển và hoàn cảnh chính trị - xã hội của đất nước.
+                Nền kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam có những <span className="font-semibold text-orange-600">đặc trưng riêng</span> phản ánh điều kiện lịch sử, trình độ phát triển và hoàn cảnh chính trị - xã hội của đất nước.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6">
               <ChartIllustration />
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function DacTrung() {
                       viewport={{ once: true }}
                       transition={{ delay: itemIndex * 0.05 }}
                       whileHover={{ x: 5 }}
-                      className="flex items-start gap-3 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl hover:shadow-md transition-all"
+                      className="flex items-start gap-3 p-4 bg-gradient-to-r from-gray-50 to-orange-50 rounded-xl hover:shadow-md transition-all"
                     >
                       <div className={`w-2 h-2 bg-gradient-to-br ${char.color} rounded-full mt-2 flex-shrink-0`} />
                       <p className="text-gray-700 leading-relaxed">
@@ -174,12 +174,12 @@ export default function DacTrung() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 glass-effect rounded-2xl p-8 bg-gradient-to-br from-blue-50 to-purple-50"
+          className="mt-12 glass-effect rounded-2xl p-8 bg-gradient-to-br from-orange-50 to-amber-50"
         >
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Kết luận</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
             Với những đặc trưng trên, kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam là{' '}
-            <span className="font-semibold text-purple-600">sự kết hợp những mặt tích cực, ưu điểm của kinh tế thị trường với bản chất ưu việt của chủ nghĩa xã hội</span>{' '}
+            <span className="font-semibold text-orange-600">sự kết hợp những mặt tích cực, ưu điểm của kinh tế thị trường với bản chất ưu việt của chủ nghĩa xã hội</span>{' '}
             để hướng tới một nền kinh tế thị trường hiện đại, văn minh. Tuy nhiên, kinh tế thị trường định hướng xã hội chủ nghĩa ở Việt Nam đang trong quá trình hình thành và phát triển nên còn bộc lộ nhiều yếu kém cần phải khắc phục và hoàn thiện.
           </p>
         </motion.div>
@@ -195,7 +195,7 @@ export default function DacTrung() {
             <motion.button
               whileHover={{ scale: 1.05, x: -5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-2 px-6 py-3 glass-effect rounded-xl font-semibold text-gray-700 hover:text-orange-600 transition-colors"
             >
               <ArrowLeft size={20} />
               Tính tất yếu
@@ -206,7 +206,7 @@ export default function DacTrung() {
             <motion.button
               whileHover={{ scale: 1.05, x: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               Tiếp theo: Hoàn thiện thể chế
               <ArrowRight size={20} />

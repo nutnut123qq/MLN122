@@ -45,7 +45,7 @@ const Header = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-3 cursor-pointer"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-xl">KT</span>
               </div>
               <div className="hidden md:block">
@@ -71,7 +71,7 @@ const Header = () => {
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 transition-colors"
+                className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 transition-colors"
               >
                 <BookOpen size={18} />
                 <span className="font-medium">Nội dung</span>
@@ -101,9 +101,9 @@ const Header = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
-                          className="px-4 py-3 hover:bg-blue-50 transition-colors border-b border-gray-100 last:border-0"
+                          className="px-4 py-3 hover:bg-orange-50 transition-colors border-b border-gray-100 last:border-0"
                         >
-                          <span className="text-gray-700 hover:text-blue-600 font-medium">
+                          <span className="text-gray-700 hover:text-orange-600 font-medium">
                             {page.name}
                           </span>
                         </motion.div>
@@ -179,7 +179,7 @@ const NavLink = ({
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors cursor-pointer"
+      className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors cursor-pointer"
     >
       {icon}
       <span className="font-medium">{children}</span>
@@ -199,7 +199,7 @@ const MobileNavLink = ({
   <Link href={href}>
     <motion.div
       whileHover={{ x: 4 }}
-      className="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+      className="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
     >
       {icon}
       <span className="font-medium">{children}</span>
