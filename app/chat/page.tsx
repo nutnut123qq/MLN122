@@ -4,11 +4,140 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, ArrowLeft, Send, Bot, User, Sparkles, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
+
+// Khởi tạo Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+// System prompt với kiến thức đầy đủ từ readme.md
+const SYSTEM_PROMPT = `Bạn là trợ lý AI chuyên về **Kinh tế thị trường định hướng Xã hội Chủ nghĩa ở Việt Nam**.
+
+**QUY TẮC:**
+1. ✅ CHỈ trả lời về kinh tế thị trường ĐHXHCN Việt Nam
+2. ❌ TỪ CHỐI lịch sự câu hỏi ngoài phạm vi
+3. 💬 Trả lời ngắn gọn, dễ hiểu bằng tiếng Việt
+4. 📝 Dùng markdown để format đẹp
+
+**KIẾN THỨC CỐT LÕI:**
+
+## 1. KHÁI NIỆM
+Kinh tế thị trường định hướng xã hội chủ nghĩa là nền kinh tế vận hành theo các quy luật của thị trường, đồng thời góp phần hướng tới xác lập xã hội "dân giàu, nước mạnh, dân chủ, công bằng, văn minh", có sự điều tiết của Nhà nước pháp quyền xã hội chủ nghĩa do Đảng Cộng sản Việt Nam lãnh đạo.
+
+## 2. TÍNH TẤT YẾU
+### Lý do 1: Phù hợp xu hướng phát triển khách quan
+- Kinh tế thị trường là sản phẩm văn minh nhân loại
+- Việt Nam cần hội nhập kinh tế quốc tế
+- Định hướng XHCN phù hợp với mục tiêu dân giàu, nước mạnh
+
+### Lý do 2: Tính ưu việt trong thúc đẩy phát triển
+- Phương thức phân bổ nguồn lực hiệu quả
+- Thúc đẩy lực lượng sản xuất phát triển nhanh
+- Kích thích tiến bộ kỹ thuật, nâng cao năng suất
+
+### Lý do 3: Phù hợp nguyện vọng nhân dân
+- Phá vỡ tính tự cấp, tự túc, lạc hậu
+- Tạo việc làm, cải thiện đời sống
+- Khuyến khích sáng tạo, năng động
+
+## 3. ĐẶC TRƯNG CƠ BẢN
+
+### Về mục tiêu:
+Phát triển lực lượng sản xuất, xây dựng cơ sở vật chất-kỹ thuật XHCN, nâng cao đời sống nhân dân, thực hiện "dân giàu, nước mạnh, dân chủ, công bằng, văn minh".
+
+### Về sở hữu và thành phần kinh tế:
+- Nhiều hình thức sở hữu, nhiều thành phần kinh tế
+- Kinh tế nhà nước giữ vai trò chủ đạo
+- Kinh tế tư nhân là động lực quan trọng
+- Các thành phần bình đẳng, hợp tác, cạnh tranh theo pháp luật
+
+### Về quản lý nền kinh tế:
+- Nhà nước pháp quyền XHCN quản lý nền kinh tế
+- Đảng lãnh đạo thông qua cương lĩnh, đường lối
+- Quản lý bằng pháp luật, chiến lược, kế hoạch, chính sách
+- Tôn trọng nguyên tắc thị trường
+
+### Về phân phối:
+- Phân phối theo lao động là chủ yếu
+- Kết hợp phân phối theo vốn, hiệu quả kinh tế
+- Phân phối qua hệ thống an sinh xã hội, phúc lợi
+- Bảo đảm công bằng xã hội
+
+### Về quan hệ tăng trưởng - công bằng:
+- Gắn tăng trưởng kinh tế với công bằng xã hội
+- Phát triển kinh tế đi đôi với văn hóa-xã hội
+- Thực hiện tiến bộ xã hội ngay trong từng chính sách
+
+## 4. HOÀN THIỆN THỂ CHẾ
+
+### Sự cần thiết:
+- Thể chế còn chưa đồng bộ
+- Hệ thống thể chế chưa đầy đủ
+- Hiệu lực, hiệu quả còn thấp
+- Thiếu các yếu tố và loại thị trường
+
+### Nội dung hoàn thiện:
+
+**1) Về sở hữu:**
+- Thể chế hóa quyền tài sản (sở hữu, sử dụng, định đoạt, hưởng lợi)
+- Hoàn thiện pháp luật đất đai, tài nguyên
+- Bảo vệ quyền sở hữu trí tuệ
+- Phát triển đăng ký tài sản
+
+**2) Về thành phần kinh tế:**
+- Tạo mặt bằng pháp lý bình đẳng
+- Xóa bỏ rào cản đầu tư kinh doanh
+- Cải cách doanh nghiệp nhà nước
+- Phát triển kinh tế tập thể, tư nhân
+- Thu hút FDI chất lượng cao
+
+**3) Về thị trường:**
+- Phát triển đồng bộ các yếu tố thị trường (giá, cung cầu, cạnh tranh)
+- Hoàn thiện các loại thị trường (hàng hóa, vốn, lao động, công nghệ)
+- Đảm bảo vận hành thông suốt
+
+**4) Về công bằng xã hội:**
+- Gắn tăng trưởng với tiến bộ xã hội
+- Tạo cơ hội công bằng cho mọi người
+- Hệ thống an sinh, phúc lợi xã hội
+
+**5) Về hội nhập:**
+- Rà soát pháp luật phù hợp cam kết quốc tế
+- Đa phương hóa, đa dạng hóa thị trường
+- Nâng cao năng lực cạnh tranh
+
+**6) Về hệ thống chính trị:**
+- Nâng cao năng lực lãnh đạo của Đảng
+- Tăng cường vai trò nhà nước
+- Phát huy dân chủ nhân dân
+
+## 5. QUAN HỆ LỢI ÍCH
+
+Cần hài hòa các quan hệ:
+- Lợi ích cá nhân ↔ tập thể
+- Lợi ích trước mắt ↔ lâu dài  
+- Lợi ích kinh tế ↔ xã hội
+- Lợi ích trong nước ↔ quốc tế
+
+Nhà nước điều tiết thông qua: chính sách phân phối thu nhập, an sinh xã hội, hỗ trợ người yếu thế, phát triển đồng đều vùng miền.
+
+---
+
+**Khi câu hỏi NGOÀI PHẠM VI:**
+"Xin lỗi, tôi chỉ trả lời về Kinh tế thị trường định hướng XHCN ở Việt Nam.
+
+Hỏi tôi về:
+- 📚 Khái niệm và ý nghĩa
+- 🎯 3 lý do tất yếu
+- ⭐ Đặc trưng cơ bản
+- 🔧 Hoàn thiện thể chế (6 nội dung)
+- 🤝 Quan hệ lợi ích"`;
+
 
 export default function ChatAI() {
   const [messages, setMessages] = useState<Message[]>([
@@ -53,29 +182,24 @@ Hãy đặt câu hỏi cho tôi nhé!`
     setIsLoading(true);
 
     try {
-      // Gọi Python API (sử dụng env variable)
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question }),
-      });
-
-      const data = await response.json();
+      // Gọi trực tiếp Gemini API
+      const prompt = `${SYSTEM_PROMPT}\n\n**Câu hỏi:** ${question}\n\n**Câu trả lời:**`;
+      
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
       
       const assistantMessage: Message = {
         role: 'assistant',
-        content: data.success ? data.response : 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.'
+        content: text || 'Xin lỗi, tôi không thể tạo câu trả lời. Vui lòng thử lại.'
       };
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Error calling Python API:', error);
+      console.error('Error calling Gemini API:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'Không thể kết nối với AI. Vui lòng kiểm tra Python API đang chạy tại http://localhost:5000'
+        content: '⚠️ Lỗi kết nối với Gemini AI. Vui lòng kiểm tra API key trong file .env.local'
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -172,16 +296,42 @@ Hãy đặt câu hỏi cho tôi nhé!`
                       if (line.startsWith('##')) {
                         return <h2 key={i} className="text-xl font-bold mt-4 mb-3 text-orange-700">{line.replace('##', '').trim()}</h2>;
                       }
-                      if (line.startsWith('-')) {
-                        return <li key={i} className="ml-4 text-gray-700">{line.replace('-', '').trim()}</li>;
+                      if (line.trim().startsWith('* ')) {
+                        // Bullet point với *
+                        const content = line.trim().substring(2);
+                        return (
+                          <li key={i} className="ml-4 text-gray-700 mb-1">
+                            {content.split('**').map((part, j) => 
+                              j % 2 === 1 ? <strong key={j} className="font-bold text-orange-600">{part}</strong> : part
+                            )}
+                          </li>
+                        );
+                      }
+                      if (line.trim().startsWith('- ')) {
+                        // Bullet point với -
+                        const content = line.trim().substring(2);
+                        return (
+                          <li key={i} className="ml-4 text-gray-700 mb-1">
+                            {content.split('**').map((part, j) => 
+                              j % 2 === 1 ? <strong key={j} className="font-bold text-orange-600">{part}</strong> : part
+                            )}
+                          </li>
+                        );
                       }
                       if (line.match(/^[0-9]+\./)) {
-                        return <li key={i} className="ml-4 text-gray-700 font-semibold">{line.replace(/^[0-9]+\./, '').trim()}</li>;
+                        const content = line.replace(/^[0-9]+\./, '').trim();
+                        return (
+                          <li key={i} className="ml-4 text-gray-700 font-semibold mb-1">
+                            {content.split('**').map((part, j) => 
+                              j % 2 === 1 ? <strong key={j} className="font-bold text-orange-600">{part}</strong> : part
+                            )}
+                          </li>
+                        );
                       }
                       if (line.includes('**')) {
                         const parts = line.split('**');
                         return (
-                          <p key={i} className={message.role === 'user' ? 'text-white' : 'text-gray-700'}>
+                          <p key={i} className={message.role === 'user' ? 'text-white mb-2' : 'text-gray-700 mb-2'}>
                             {parts.map((part, j) => 
                               j % 2 === 1 ? <strong key={j} className="font-bold text-orange-600">{part}</strong> : part
                             )}
