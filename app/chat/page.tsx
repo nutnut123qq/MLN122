@@ -53,8 +53,9 @@ Hãy đặt câu hỏi cho tôi nhé!`
     setIsLoading(true);
 
     try {
-      // Gọi Python API
-      const response = await fetch('http://localhost:5000/api/chat', {
+      // Gọi Python API (sử dụng env variable)
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
