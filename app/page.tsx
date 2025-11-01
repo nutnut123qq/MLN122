@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Target, TrendingUp, Users, Scale, Globe } from 'lucide-react';
+import { BookOpen, Target, TrendingUp, Scale, Users, Globe, ArrowRight, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
-import { HeroIllustration, EconomyIllustration, TeamworkIllustration, BookIllustration } from '@/components/Illustrations';
+import { HeroIllustration, BookIllustration, TeamworkIllustration, EconomyIllustration } from '@/components/Illustrations';
 
 export default function Home() {
   const roadmapItems = [
@@ -109,13 +109,25 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 glass-effect text-gray-700 rounded-xl font-semibold hover:shadow-xl transition-all"
+                    className="px-8 py-4 glass-effect rounded-xl font-semibold text-gray-700 hover:shadow-lg transition-all flex items-center gap-2"
                   >
-                    Trò chơi tương tác
+                    <Target size={20} />
+                    Trò chơi
+                  </motion.button>
+                </Link>
+
+                <Link href="/chat">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
+                  >
+                    <MessageCircle size={20} />
+                    Chat với AI
                   </motion.button>
                 </Link>
               </motion.div>
-            </motion.div>
+              </motion.div>
 
             {/* Illustration */}
             <motion.div

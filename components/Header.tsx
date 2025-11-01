@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, BookOpen, Gamepad2, ChevronDown } from 'lucide-react';
+import { Menu, X, Home, BookOpen, Gamepad2, ChevronDown, MessageCircle } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -117,6 +117,10 @@ const Header = () => {
             <NavLink href="/game" icon={<Gamepad2 size={18} />}>
               Trò chơi
             </NavLink>
+
+            <NavLink href="/chat" icon={<MessageCircle size={18} />}>
+              Chat AI
+            </NavLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -156,6 +160,10 @@ const Header = () => {
 
                 <MobileNavLink href="/game" icon={<Gamepad2 size={18} />}>
                   Trò chơi
+                </MobileNavLink>
+
+                <MobileNavLink href="/chat" icon={<MessageCircle size={18} />}>
+                  Chat AI
                 </MobileNavLink>
               </div>
             </motion.div>
